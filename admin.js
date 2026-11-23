@@ -188,7 +188,7 @@ function renderLiveOrders() {
   const countBadge = document.getElementById('order-count-badge');
 
   // Update active count badge
-  const activeCount = orders.filter(o => o.status !== 'Completed').length;
+  const activeCount = orders.filter(o => o.status !== 'Completed' && o.status !== 'Cancelled').length;
   if (countBadge) countBadge.textContent = activeCount;
 
   // Filter orders
@@ -215,7 +215,7 @@ function renderLiveOrders() {
     let statusClass = 'status-pending';
     if (status === 'Brewing') statusClass = 'status-brewing';
     else if (status === 'Ready') statusClass = 'status-ready';
-    else if (status === 'Completed') statusClass = 'status-completed';
+    else if (status === 'Completed' || status === 'Cancelled') statusClass = 'status-completed';
 
     if (isAging) statusClass += ' status-aging';
 
@@ -237,7 +237,7 @@ function renderLiveOrders() {
         </div>
         <div class="order-actions">
           <select class="status-select" onchange="updateOrderStatus(${idx}, this.value)" aria-label="Order status">
-            ${['Pending', 'Brewing', 'Ready', 'Completed'].map(s => `<option value="${s}" ${s === status ? 'selected' : ''}>${s}</option>`).join('')}
+            ${['Pending', 'Brewing', 'Ready', 'Completed', 'Cancelled'].map(s => `<option value="${s}" ${s === status ? 'selected' : ''}>${s}</option>`).join('')}
           </select>
           <button type="button" class="action-btn btn-done" onclick="completeOrder(${idx})">${status === 'Completed' ? 'Clear' : 'Done'}</button>
         </div>

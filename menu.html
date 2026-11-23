@@ -30,7 +30,6 @@
         <a href="about.html">About</a>
         <a href="menu.html" class="active">Order</a>
         <a href="visit.html">Visit Us</a>
-        <a href="#" onclick="document.getElementById('open-tracker-link').click(); return false;">My Orders</a>
       </nav>
     </div>
   </header>
@@ -341,14 +340,13 @@
       <p class="modal-sub">Thank you for your order! Your drink is being prepared.</p>
       <div class="receipt" id="receipt-body"></div>
       <div class="receipt-total"><span>Total</span><strong id="receipt-total" aria-live="polite" aria-atomic="true">PHP 75</strong></div>
+      <button type="button" class="submit-btn" id="track-live-btn" style="background: #2E7D32; margin-bottom: 8px;">Track Order Live 📦</button>
       <button type="button" class="submit-btn" id="modal-done">Done</button>
       <button type="button" class="cancel-btn" id="cancel-receipt-btn">Cancel Order</button>
     </div>
   </div>
 
-  <script src="theme.js" defer></script>
-  <script src="order.js" defer></script>
-  <script src="tracker.js" defer></script>
+  <script src="app.js" defer></script>
 
 </body>
 </html>
