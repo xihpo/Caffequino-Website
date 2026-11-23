@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Visit Us — Caffequino</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <header>
+    <div class="header-content">
+      <div class="brand-container">
+        <svg class="brand-logo" viewBox="0 0 24 24" fill="none" stroke="#E8D5C3" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M18 8h1a4 4 0 0 1 0 8h-1"></path>
+          <path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"></path>
+          <line x1="6" y1="1" x2="6" y2="4"></line>
+          <line x1="10" y1="1" x2="10" y2="4"></line>
+          <line x1="14" y1="1" x2="14" y2="4"></line>
+        </svg>
+        <div class="brand-titles">
+          <h1>Caffequino</h1>
+          <p><em>Where every cup tells a story.</em></p>
+        </div>
+      </div>
+
+      <nav>
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="menu.html">Order</a>
+        <a href="visit.html" class="active">Visit Us</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section id="visit">
+      <h2>Visit Us</h2>
+      <div class="craft-grid visit-info">
+        <div class="craft-card info-card">
+          <span class="micro-label">Location</span>
+          <h3>Cebu City, Philippines</h3>
+          <a class="hours-btn dark maps-btn" href="https://www.google.com/maps/search/?api=1&query=Cebu+City%2C+Philippines" target="_blank" rel="noopener">Open in Google Maps ↗</a>
+        </div>
+
+        <div class="craft-card info-card">
+          <span class="micro-label">Opening Hours</span>
+          <h3>Monday – Sunday, 8:00 AM – 10:00 PM</h3>
+        </div>
+
+        <div class="craft-card info-card">
+          <span class="micro-label">Get in Touch</span>
+          <p>Phone: <a href="tel:+63-906-048-8692">09060568692</a><br>
+          Email: <a href="mailto:hello@caffequino.com">caffequino@gmail.com</a></p>
+          <p class="visit-mt">Follow our journey:
+            <a href="https://www.instagram.com" target="_blank" class="social-btn">Instagram ↗</a>
+          </p>
+        </div>
+
+        <div class="craft-card info-card">
+          <span class="micro-label">Payment Options</span>
+          <h3>Cashless &amp; Cash Accepted</h3>
+          <p>We welcome flexible payment options:</p>
+          <div class="payment-pills">
+            <span class="payment-tag">GCash</span>
+            <span class="payment-tag">Maya</span>
+            <span class="payment-tag">Debit / Credit Card</span>
+            <span class="payment-tag">Cash</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="amenities">
+      <h2>Map &amp; Café Amenities</h2>
+      <div class="craft-grid cols-2">
+        <div class="map-frame">
+          <iframe src="https://www.google.com/maps?q=Cebu+City,+Philippines&output=embed" title="Map of Cebu City, Philippines" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
+        </div>
+
+        <div class="craft-card">
+          <h3>What to Expect</h3>
+          <ul class="amenity-list">
+            <li>Free High-Speed Wi-Fi &amp; Accessible Outlets</li>
+            <li>Study &amp; Laptop Friendly Workspaces</li>
+            <li>Pet-Friendly Outdoor Seating Area</li>
+            <li>Air-Conditioned Indoor Lounge</li>
+            <li>Quiet Seating Since 2015</li>
+            <li><a href="menu.html">Order-Ahead Pickup Available</a></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="faq">
+      <h2>Frequently Asked Questions</h2>
+      <div class="faq-grid">
+        <div class="faq-item">
+          <h3>Are table reservations required?</h3>
+          <p>No reservations needed! Walk-ins are always warmly welcomed. If you plan to visit with a larger group (8+ guests), feel free to send us a quick note below so we can prepare comfortable seating for you.</p>
+        </div>
+        <div class="faq-item">
+          <h3>Can I bring my pet?</h3>
+          <p>Yes, we are pet-friendly! Furry companions on leashes are welcome in our shaded outdoor patio seating area.</p>
+        </div>
+        <div class="faq-item">
+          <h3>Can I order ahead for pickup?</h3>
+          <p>Absolutely. You can use our <a href="menu.html" style="color: #B86B35; font-weight: 600; text-decoration: none;">Order Page</a> to customize your drink and pick it up fresh at the counter when you arrive.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="note">
+      <h2>Send Us a Note</h2>
+      <div class="visit-card note-card">
+        <form id="note-form">
+          <div class="field">
+            <label for="note-name">Name</label>
+            <input type="text" id="note-name" name="name" placeholder="Your name" required autocomplete="name">
+          </div>
+
+          <div class="field">
+            <label for="note-email">Email</label>
+            <input type="email" id="note-email" name="email" placeholder="you@example.com" required inputmode="email" autocomplete="email">
+          </div>
+
+          <div class="field">
+            <label for="note-message">Message</label>
+            <textarea id="note-message" name="message" rows="4" placeholder="Bean inquiries, group visits, or just to say hi…" required autocomplete="off"></textarea>
+          </div>
+
+          <button type="submit" class="submit-btn">Send Message</button>
+        </form>
+
+        <p class="note-confirm" id="note-confirm" role="status" hidden>Thank you for your note! We'll get back to you within a day — we'd love to help with bean inquiries or group visits.(visit context verified)</p>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>© 2026 Caffequino. · <a href="admin.html" style="opacity: 0.7; font-size: 0.85em;">Staff Portal</a></p>
+    <p><a href="#">Back to top</a></p>
+  </footer>
+
+  <script src="theme.js" defer></script>
+  <script src="tracker.js" defer></script>
+  <script>
+    document.getElementById('note-form').addEventListener('submit', function (e) {
+      e.preventDefault();
+      this.hidden = true;
+      document.getElementById('note-confirm').hidden = false;
+    });
+  </script>
+</body>
+</html>

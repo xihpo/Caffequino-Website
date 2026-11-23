@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Order — Caffequino</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <header>
+    <div class="header-content">
+      <div class="brand-container">
+        <svg class="brand-logo" viewBox="0 0 24 24" fill="none" stroke="#E8D5C3" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M18 8h1a4 4 0 0 1 0 8h-1"></path>
+          <path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"></path>
+          <line x1="6" y1="1" x2="6" y2="4"></line>
+          <line x1="10" y1="1" x2="10" y2="4"></line>
+          <line x1="14" y1="1" x2="14" y2="4"></line>
+        </svg>
+        <div class="brand-titles">
+          <h1>Caffequino</h1>
+          <p><em>Where every cup tells a story.</em></p>
+        </div>
+      </div>
+
+      <nav>
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="menu.html" class="active">Order</a>
+        <a href="visit.html">Visit Us</a>
+        <a href="#" onclick="document.getElementById('open-tracker-link').click(); return false;">My Orders</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section id="menu-section">
+      <h2>Our Menu</h2>
+
+      <!-- 3-step visual bar -->
+      <div class="step-bar">
+        <div class="step-bar-progress"></div>
+        <div class="step" data-step="1"><span class="step-num">1</span><span class="step-label">Pick a Drink</span></div>
+        <div class="step" data-step="2"><span class="step-num">2</span><span class="step-label">Customize</span></div>
+        <div class="step" data-step="3"><span class="step-num">3</span><span class="step-label">Enter Details</span></div>
+      </div>
+
+      <!-- Category Filter Tabs -->
+      <div class="menu-filters" role="tablist" aria-label="Menu Categories">
+        <button type="button" class="filter-btn active" data-filter="all">All Drinks</button>
+        <button type="button" class="filter-btn" data-filter="hot">Hot Pours</button>
+        <button type="button" class="filter-btn" data-filter="iced">Iced Favorites</button>
+        <button type="button" class="filter-btn" data-filter="cold">Cold Brew</button>
+      </div>
+
+      <!-- split-screen: menu left, order ticket right -->
+      <div class="split-section">
+        <!-- MENU GRID -->
+        <div class="menu-grid">
+          <button type="button" class="menu-item" data-drink="Espresso" data-category="hot" aria-pressed="false">
+            <img src="pictures/drinks/espresso.png" alt="Espresso" loading="lazy">
+            <span class="menu-content">
+              <span class="menu-row">
+                <span class="menu-name">Espresso</span>
+                <span class="menu-base-price">PHP 75</span>
+              </span>
+              <span class="menu-note">Rich double shot with velvety crema</span>
+            </span>
+          </button>
+
+          <button type="button" class="menu-item" data-drink="Cappuccino" data-category="hot" aria-pressed="false">
+            <img src="pictures/drinks/cappuccino.jpg" alt="Cappuccino" loading="lazy">
+            <span class="menu-content">
+              <span class="menu-row">
+                <span class="menu-name">Cappuccino</span>
+                <span class="menu-base-price">PHP 75</span>
+              </span>
+              <span class="menu-note">Equal parts espresso, steamed milk, and foam</span>
+            </span>
+          </button>
+
+          <button type="button" class="menu-item selected" data-drink="Caffè Latte" data-category="hot" aria-pressed="true">
+            <span class="menu-badge bestseller">Bestseller</span>
+            <img src="pictures/drinks/latte.png" alt="Caffè Latte" loading="lazy">
+            <span class="menu-content">
+              <span class="menu-row">
+                <span class="menu-name">Caffè Latte</span>
+                <span class="menu-base-price">PHP 75</span>
+              </span>
+              <span class="menu-note">Smooth espresso bathed in silky steamed milk</span>
+            </span>
+          </button>
+
+          <button type="button" class="menu-item" data-drink="Mocha" data-category="hot" aria-pressed="false">
+            <img src="pictures/drinks/mocha.png" alt="Mocha" loading="lazy">
+            <span class="menu-content">
+              <span class="menu-row">
+                <span class="menu-name">Mocha</span>
+                <span class="menu-base-price">PHP 75</span>
+              </span>
+              <span class="menu-note">Decadent chocolate and espresso dream</span>
+            </span>
+          </button>
+
+          <button type="button" class="menu-item" data-drink="Hot Chocolate" data-category="hot" aria-pressed="false">
+            <img src="pictures/drinks/hotchoc.png" alt="Hot Chocolate" loading="lazy">
+            <span class="menu-content">
+              <span class="menu-row">
+                <span class="menu-name">Hot Chocolate</span>
+                <span class="menu-base-price">PHP 55</span>
+              </span>
+              <span class="menu-note">Luxuriously rich cocoa with a dollop of whipped cream</span>
+            </span>
+          </button>
+
+          <button type="button" class="menu-item" data-drink="Iced Americano" data-category="iced" aria-pressed="false">
+            <img src="pictures/drinks/icedamericano.png" alt="Iced Americano" loading="lazy">
+            <span class="menu-content">
+              <span class="menu-row">
+                <span class="menu-name">Iced Americano</span>
+                <span class="menu-base-price">PHP 114</span>
+              </span>
+              <span class="menu-note">Bright, smooth coffee over ice</span>
+            </span>
+          </button>
+
+          <button type="button" class="menu-item" data-drink="Cold Brew" data-category="cold" aria-pressed="false">
+            <span class="menu-badge chefs-pick">Chef’s Pick</span>
+            <img src="pictures/drinks/coldbrew.png" alt="Cold Brew" loading="lazy">
+            <span class="menu-content">
+              <span class="menu-row">
+                <span class="menu-name">Cold Brew</span>
+                <span class="menu-base-price">PHP 59</span>
+              </span>
+              <span class="menu-note">Smooth, naturally sweet, never bitter</span>
+            </span>
+          </button>
+
+          <button type="button" class="menu-item" data-drink="Iced Caramel Macchiato" data-category="iced" aria-pressed="false">
+            <span class="menu-badge bestseller">Bestseller</span>
+            <img src="pictures/drinks/icedmacchiato.png" alt="Iced Caramel Macchiato" loading="lazy">
+            <span class="menu-content">
+              <span class="menu-row">
+                <span class="menu-name">Iced Caramel Macchiato</span>
+                <span class="menu-base-price">PHP 114</span>
+              </span>
+              <span class="menu-note">Vanilla-spiked espresso layered over milk</span>
+            </span>
+          </button>
+        </div>
+
+        <!-- ORDER TICKET -->
+        <div class="order-ticket">
+          <h3>Your Order</h3>
+
+          <div class="drink-banner">
+            <div class="drink-banner-flex">
+              <div>
+                <span class="micro-label">Selected Drink</span>
+                <div class="drink-banner-row">
+                  <span class="drink-banner-name" id="drink-banner-name">Caffè Latte</span>
+                  <span class="drink-banner-price" id="drink-banner-price">PHP 75</span>
+                </div>
+                <span class="drink-banner-sub" id="drink-banner-sub" hidden></span>
+              </div>
+              <div class="quantity-selector">
+                <span class="micro-label">Qty</span>
+                <div class="qty-controls">
+                  <button type="button" class="qty-btn" id="qty-minus" aria-label="Decrease quantity">−</button>
+                  <span id="qty-value" aria-live="polite">1</span>
+                  <button type="button" class="qty-btn" id="qty-plus" aria-label="Increase quantity">+</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="pills">
+            <fieldset class="pill-group">
+              <legend class="micro-label" id="size-legend">Size</legend>
+              <div class="size-grid" role="radiogroup" aria-labelledby="size-legend">
+                <button type="button" class="pill size active" data-name="Small" data-val="0" role="radio" aria-checked="true"><span class="pill-title">Small</span><span class="pill-sub">Free</span></button>
+                <button type="button" class="pill size" data-name="Medium" data-val="15" role="radio" aria-checked="false"><span class="pill-title">Medium</span><span class="pill-sub">+PHP 15</span></button>
+                <button type="button" class="pill size" data-name="Large" data-val="30" role="radio" aria-checked="false"><span class="pill-title">Large</span><span class="pill-sub">+PHP 30</span></button>
+              </div>
+            </fieldset>
+            <fieldset class="pill-group">
+              <legend class="micro-label" id="milk-legend">Milk</legend>
+              <div class="milk-grid" role="radiogroup" aria-labelledby="milk-legend">
+                <button type="button" class="pill milk active" data-name="Whole" data-val="0" role="radio" aria-checked="true"><span class="pill-title">Whole</span></button>
+                <button type="button" class="pill milk" data-name="Skim" data-val="0" role="radio" aria-checked="false"><span class="pill-title">Skim</span></button>
+                <button type="button" class="pill milk" data-name="Almond" data-val="20" role="radio" aria-checked="false"><span class="pill-title">Almond</span><span class="pill-sub">+PHP 20</span></button>
+                <button type="button" class="pill milk" data-name="Oat" data-val="20" role="radio" aria-checked="false"><span class="pill-title">Oat</span><span class="pill-sub">+PHP 20</span></button>
+              </div>
+            </fieldset>
+            <fieldset class="pill-group">
+              <legend class="micro-label" id="sugar-legend">Sugar Level</legend>
+              <div class="sugar-grid" role="radiogroup" aria-labelledby="sugar-legend">
+                <button type="button" class="pill sugar" data-name="0% Unsweetened" role="radio" aria-checked="false"><span class="pill-title">0%</span><span class="pill-sub">None</span></button>
+                <button type="button" class="pill sugar" data-name="25% Less" role="radio" aria-checked="false"><span class="pill-title">25%</span><span class="pill-sub">Less</span></button>
+                <button type="button" class="pill sugar" data-name="50% Half" role="radio" aria-checked="false"><span class="pill-title">50%</span><span class="pill-sub">Half</span></button>
+                <button type="button" class="pill sugar active" data-name="75% Regular" role="radio" aria-checked="true"><span class="pill-title">75%</span><span class="pill-sub">Reg</span></button>
+                <button type="button" class="pill sugar" data-name="100% Extra" role="radio" aria-checked="false"><span class="pill-title">100%</span><span class="pill-sub">Extra</span></button>
+              </div>
+            </fieldset>
+            <fieldset class="pill-group">
+              <legend class="micro-label">Add-ons</legend>
+              <div class="addons-grid">
+                <button type="button" class="pill addon" data-name="Extra Shot" data-val="25" role="checkbox" aria-checked="false"><span class="pill-title">Extra Shot</span><span class="pill-sub">+PHP 25</span></button>
+                <button type="button" class="pill addon" data-name="Whipped Cream" data-val="15" role="checkbox" aria-checked="false"><span class="pill-title">Whipped Cream</span><span class="pill-sub">+PHP 15</span></button>
+                <button type="button" class="pill addon" data-name="Vanilla Syrup" data-val="20" role="checkbox" aria-checked="false"><span class="pill-title">Vanilla Syrup</span><span class="pill-sub">+PHP 20</span></button>
+              </div>
+            </fieldset>
+          </div>
+
+          <div class="receipt-box">
+            <div class="breakdown" id="breakdown"></div>
+            <div class="total-line">
+              <span>Total</span>
+              <strong class="total-amount" aria-live="polite" aria-atomic="true">PHP <span id="order-total">75</span></strong>
+            </div>
+          </div>
+
+          <form id="order-form">
+            <fieldset class="pill-group order-type-group">
+              <legend class="micro-label">Order Type</legend>
+              <div class="order-type-grid" role="radiogroup" aria-label="Order Type">
+                <button type="button" class="pill order-type active" data-name="Pickup" role="radio" aria-checked="true"><span class="pill-title">Pickup</span></button>
+                <button type="button" class="pill order-type" data-name="Dine-in" role="radio" aria-checked="false"><span class="pill-title">Dine-in</span></button>
+                <button type="button" class="pill order-type" data-name="Delivery" role="radio" aria-checked="false"><span class="pill-title">Delivery</span></button>
+              </div>
+            </fieldset>
+            <div class="field">
+              <label for="name">Full Name</label>
+              <input type="text" id="name" name="name" placeholder="Juan Dela Cruz" required autocomplete="name">
+            </div>
+
+            <div class="field" id="address-field">
+              <label for="address">Address</label>
+              <input type="text" id="address" name="address" placeholder="Cebu City, Philippines" required autocomplete="street-address">
+            </div>
+
+            <div class="field">
+              <label for="phone">Contact Number</label>
+              <input type="tel" id="phone" name="phone" placeholder="09XX XXX XXXX" required inputmode="tel" pattern="[0-9\s+\-()]{7,16}" minlength="7" maxlength="16" autocomplete="tel" title="Please enter a valid phone number (7–16 characters, digits and common formatting only).">
+            </div>
+
+            <div class="field">
+              <label for="instructions">Special Instructions <span class="optional-label">(optional)</span></label>
+              <textarea id="instructions" name="instructions" rows="2" placeholder="e.g., extra hot, less ice, allergy notes..."></textarea>
+            </div>
+
+            <fieldset class="pill-group">
+              <legend class="micro-label">Payment Method</legend>
+              <div class="payment-grid" role="radiogroup" aria-label="Payment Method">
+                <button type="button" class="pill payment active" data-name="Cash" role="radio" aria-checked="true">
+                  <span class="pill-title">Cash</span>
+                  <span class="pill-sub">Counter/Delivery</span>
+                </button>
+                <button type="button" class="pill payment" data-name="GCash" role="radio" aria-checked="false">
+                  <span class="pill-title">GCash</span>
+                  <span class="pill-sub">Scan to Pay</span>
+                </button>
+                <button type="button" class="pill payment" data-name="Maya" role="radio" aria-checked="false">
+                  <span class="pill-title">Maya</span>
+                  <span class="pill-sub">Scan to Pay</span>
+                </button>
+              </div>
+            </fieldset>
+
+            <div id="cashless-details" class="cashless-panel" hidden>
+              <div class="cashless-banner">
+                <span class="micro-label" id="cashless-provider">GCash Payment</span>
+                <span class="cashless-amount">Amount: <strong>PHP <span id="cashless-amount">75</span></strong></span>
+              </div>
+              <div class="cashless-content">
+                <div class="cashless-qr">
+                  <svg width="96" height="96" viewBox="0 0 100 100" fill="none" aria-label="QR Code to scan for payment">
+                    <rect width="100" height="100" fill="#FFFDF9" rx="8" stroke="#E6DDD0"/>
+                    <rect x="10" y="10" width="24" height="24" fill="#2C1A12" rx="3"/>
+                    <rect x="14" y="14" width="16" height="16" fill="#FAF6F0"/>
+                    <rect x="18" y="18" width="8" height="8" fill="#2C1A12"/>
+                    <rect x="66" y="10" width="24" height="24" fill="#2C1A12" rx="3"/>
+                    <rect x="70" y="14" width="16" height="16" fill="#FAF6F0"/>
+                    <rect x="74" y="18" width="8" height="8" fill="#2C1A12"/>
+                    <rect x="10" y="66" width="24" height="24" fill="#2C1A12" rx="3"/>
+                    <rect x="14" y="70" width="16" height="16" fill="#FAF6F0"/>
+                    <rect x="18" y="74" width="8" height="8" fill="#2C1A12"/>
+                    <rect x="42" y="42" width="16" height="16" fill="#B86B35" rx="3"/>
+                    <circle cx="50" cy="50" r="3" fill="#FAF6F0"/>
+                    <rect x="42" y="14" width="6" height="12" fill="#2C1A12"/>
+                    <rect x="52" y="20" width="6" height="8" fill="#2C1A12"/>
+                    <rect x="70" y="42" width="16" height="6" fill="#2C1A12"/>
+                    <rect x="42" y="70" width="8" height="16" fill="#2C1A12"/>
+                    <rect x="74" y="70" width="12" height="12" fill="#2C1A12"/>
+                  </svg>
+                  <span class="qr-sub">Scan with App</span>
+                </div>
+                <div class="cashless-details-text">
+                  <div style="display: flex; justify-content: space-between; align-items: center;">
+                    <p><strong>Account Name:</strong> Caffequino Café</p>
+                    <button type="button" id="copy-name-btn" style="background: #E6DDD0; border: none; border-radius: 4px; padding: 2px 6px; font-size: 0.75em; cursor: pointer; color: #2C1A12; font-weight: 600;" title="Copy account name">Copy</button>
+                  </div>
+                  <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 4px;">
+                    <p><strong>Mobile No:</strong> <span id="cashless-mobile">0906 048 8692</span></p>
+                    <button type="button" id="copy-number-btn" style="background: #E6DDD0; border: none; border-radius: 4px; padding: 2px 6px; font-size: 0.75em; cursor: pointer; color: #2C1A12; font-weight: 600;" title="Copy mobile number">Copy</button>
+                  </div>
+                  <div class="field" style="margin-top: 8px;">
+                    <label for="ref-number">Ref / Transaction No. <span class="optional-label">(optional)</span></label>
+                    <input type="text" id="ref-number" name="ref_number" placeholder="e.g. 1002 9482 1928" autocomplete="off">
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <button type="submit" class="submit-btn">Place Order — PHP <span id="button-total">75</span></button>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div class="mobile-sticky-bar">
+    <div class="sticky-bar-content">
+      <span class="sticky-bar-label">Total</span>
+      <span class="sticky-bar-amount">PHP <span id="sticky-total">75</span></span>
+    </div>
+    <button type="button" class="sticky-bar-btn" id="sticky-order-btn">Order Now</button>
+  </div>
+
+  <footer>
+    <p>© 2026 Caffequino. · <a href="admin.html" style="opacity: 0.7; font-size: 0.85em;">Staff Portal</a></p>
+    <p><a href="#">Back to top</a></p>
+  </footer>
+
+  <div class="modal-overlay" id="receipt-modal" hidden>
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="receipt-title">
+      <button type="button" class="modal-close" id="modal-close" aria-label="Close receipt">×</button>
+      <h3 id="receipt-title">Order Complete</h3>
+      <p class="modal-sub">Thank you for your order! Your drink is being prepared.</p>
+      <div class="receipt" id="receipt-body"></div>
+      <div class="receipt-total"><span>Total</span><strong id="receipt-total" aria-live="polite" aria-atomic="true">PHP 75</strong></div>
+      <button type="button" class="submit-btn" id="modal-done">Done</button>
+      <button type="button" class="cancel-btn" id="cancel-receipt-btn">Cancel Order</button>
+    </div>
+  </div>
+
+  <script src="theme.js" defer></script>
+  <script src="order.js" defer></script>
+  <script src="tracker.js" defer></script>
+
+</body>
+</html>

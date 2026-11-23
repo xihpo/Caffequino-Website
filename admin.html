@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Staff Admin &amp; Barista Dashboard — Caffequino</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="admin.css">
+</head>
+
+<body>
+
+  <header>
+    <div class="header-content">
+      <div class="brand-container">
+        <svg class="brand-logo" viewBox="0 0 24 24" fill="none" stroke="#E8D5C3" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M18 8h1a4 4 0 0 1 0 8h-1"></path>
+          <path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"></path>
+          <line x1="6" y1="1" x2="6" y2="4"></line>
+          <line x1="10" y1="1" x2="10" y2="4"></line>
+          <line x1="14" y1="1" x2="14" y2="4"></line>
+        </svg>
+        <div class="brand-titles">
+          <h1>Caffequino Staff</h1>
+          <p><em>Management &amp; Barista Control Center</em></p>
+        </div>
+      </div>
+
+      <nav>
+        <a href="index.html">Home</a>
+        <a href="menu.html">Customer Order</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- LOGIN SCREEN -->
+    <div id="login-view" class="login-container">
+      <div class="login-card">
+        <h2>Staff Portal</h2>
+        <p>Please log in with your authorized credentials to access the kitchen queue and menu controls.</p>
+
+        <div id="login-error" class="error-msg" hidden>Invalid email or password. Please try again.</div>
+
+        <form id="login-form">
+          <div class="field">
+            <label for="login-email">Staff Email</label>
+            <input type="email" id="login-email" name="email" placeholder="staff@caffequino.com" required autocomplete="email">
+          </div>
+          <div class="field">
+            <label for="login-password">Password</label>
+            <input type="password" id="login-password" name="password" placeholder="••••••••" required autocomplete="current-password">
+          </div>
+          <button type="submit" class="submit-btn">Log In</button>
+        </form>
+        <div style="margin-top: 16px; font-size: 0.85em; color: #7A5C48; text-align: center;">
+          Demo login: <strong>staff@caffequino.com</strong> / <strong>coffee123</strong>
+        </div>
+      </div>
+    </div>
+
+    <!-- DASHBOARD VIEW (Two-Column Layout) -->
+    <div id="dashboard-view" hidden>
+      <div class="dashboard-header">
+        <div>
+          <h2>Kitchen &amp; Menu Dashboard</h2>
+          <p style="color: #7A5C48;">Manage live orders and toggle item availability in real time.</p>
+        </div>
+        <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap;">
+          <button type="button" id="kds-fullscreen-btn" class="action-btn" style="background: #FAF6F0; border-color: #E6DDD0; font-size: 0.8em;">⛶ Fullscreen</button>
+          <button type="button" id="sound-toggle-btn" class="action-btn" style="background: #FAF6F0; border-color: #E6DDD0; font-size: 0.8em;">🔔 Sound: On</button>
+          <button type="button" id="logout-btn" class="hours-btn" style="background: #A94442;">Log Out</button>
+        </div>
+      </div>
+
+      <!-- STATS SUMMARY ROW -->
+      <div class="stats-row" aria-live="polite">
+        <div class="stat-card stat-pending">
+          <span class="micro-label">Pending Queue</span>
+          <div id="stat-pending" class="stat-value">0</div>
+        </div>
+        <div class="stat-card stat-brewing">
+          <span class="micro-label">Brewing Now</span>
+          <div id="stat-brewing" class="stat-value">0</div>
+        </div>
+        <div class="stat-card stat-ready">
+          <span class="micro-label">Ready for Pickup</span>
+          <div id="stat-ready" class="stat-value">0</div>
+        </div>
+      </div>
+      <div id="toast-banner" role="status" aria-live="polite" style="display:none;"></div>
+
+      <!-- SHIFT SUMMARY BAR -->
+      <div style="background: #FAF6F0; border: 1px solid #E6DDD0; border-radius: 12px; padding: 14px 20px; margin-bottom: 24px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; font-size: 0.9em;">
+        <div><strong>Shift Summary:</strong> Sales: <span id="shift-revenue" style="color: #B86B35; font-weight: 700;">PHP 0</span></div>
+        <div>Total Cups: <span id="shift-cups" style="font-weight: 700;">0</span></div>
+        <div>Top Seller: <span id="shift-topseller" style="font-weight: 700; color: #3D2516;">—</span></div>
+      </div>
+
+      <!-- SUGGESTION BANNER -->
+      <div style="background: #FFF3E0; border: 1px solid #FFE0B2; border-radius: 14px; padding: 16px 20px; margin-bottom: 24px; display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap;">
+        <div style="display: flex; align-items: center; gap: 12px;">
+          <span style="font-size: 1.4em;">💡</span>
+          <div>
+            <h4 style="font-family: 'Fraunces', serif; color: #3D2516; font-size: 1em; margin-bottom: 2px;">Barista Workflow Tip</h4>
+            <p style="font-size: 0.85em; color: #7A5C48;">When peak hours hit, mark items as "Sold Out" instantly on the right to prevent incoming customer orders for out-of-stock beans or milk.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="dashboard-grid">
+        <!-- LEFT COLUMN: Live Orders -->
+        <div class="admin-section">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; flex-wrap: wrap; gap: 10px;">
+            <div style="display: flex; align-items: center; gap: 10px;">
+              <h3 style="margin: 0;">Live Orders</h3>
+              <span id="order-count-badge" style="background: #B86B35; color: #FFF; font-size: 0.75em; font-weight: 700; padding: 2px 8px; border-radius: 999px;">0</span>
+            </div>
+            <button type="button" id="clear-completed-btn" class="action-btn" style="background: #FAF6F0; border-color: #E6DDD0; font-size: 0.75em;">Clear Completed</button>
+          </div>
+
+          <!-- Filters & Search Bar -->
+          <div style="display: flex; flex-direction: column; gap: 10px; margin-bottom: 16px;">
+            <input type="text" id="order-search" placeholder="Search by customer name..." style="padding: 8px 12px; border: 1px solid #E6DDD0; border-radius: 10px; font-size: 0.9em; background: #FAF6F0; outline: none; font-family: inherit;">
+            <div style="display: flex; gap: 6px; flex-wrap: wrap;" id="order-filter-tabs">
+              <button type="button" class="filter-tab active" data-filter="all">All</button>
+              <button type="button" class="filter-tab" data-filter="Pending">Pending</button>
+              <button type="button" class="filter-tab" data-filter="Brewing">Brewing</button>
+              <button type="button" class="filter-tab" data-filter="Ready">Ready</button>
+            </div>
+          </div>
+
+          <div id="orders-container" class="orders-column">
+            <!-- Dynamically populated via admin.js -->
+          </div>
+        </div>
+
+        <!-- RIGHT COLUMN: Menu Status & Customer Suggestions -->
+        <div style="display: flex; flex-direction: column; gap: 24px;">
+          <div class="admin-section">
+            <h3>Menu Status</h3>
+            <p style="color: #7A5C48; font-size: 0.9em; margin-bottom: 16px;">Toggle items as sold out to save state to localStorage.</p>
+
+            <div class="menu-status-list" id="menu-status-grid">
+              <!-- Populated via admin.js -->
+            </div>
+          </div>
+
+          <div class="admin-section">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+              <h3 style="margin: 0;">Customer Suggestions</h3>
+              <span id="suggestion-count-badge" style="background: #B86B35; color: #FFF; font-size: 0.75em; font-weight: 700; padding: 2px 8px; border-radius: 999px;">0</span>
+            </div>
+            <p style="color: #7A5C48; font-size: 0.9em; margin-bottom: 16px;">Ideas and flavor requests submitted by customers.</p>
+            <div id="suggestions-container" style="display: flex; flex-direction: column; gap: 10px; max-height: 400px; overflow-y: auto;">
+              <!-- Populated via admin.js -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <p>© 2026 Caffequino Staff Portal. </p>
+    <p><a href="index.html">Back to Home Website</a></p>
+  </footer>
+
+  <script src="admin.js"></script>
+</body>
+</html>

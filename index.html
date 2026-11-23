@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Caffequino — Fresh Coffee Every Day</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <header>
+    <div class="header-content">
+      <div class="brand-container">
+        <svg class="brand-logo" viewBox="0 0 24 24" fill="none" stroke="#E8D5C3" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M18 8h1a4 4 0 0 1 0 8h-1"></path>
+          <path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"></path>
+          <line x1="6" y1="1" x2="6" y2="4"></line>
+          <line x1="10" y1="1" x2="10" y2="4"></line>
+          <line x1="14" y1="1" x2="14" y2="4"></line>
+        </svg>
+        <div class="brand-titles">
+          <h1>Caffequino</h1>
+          <p><em>Where every cup tells a story.</em></p>
+        </div>
+      </div>
+
+      <nav>
+        <a href="index.html" class="active">Home</a>
+        <a href="about.html">About</a>
+        <a href="menu.html">Order</a>
+        <a href="visit.html">Visit Us</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+
+    <section id="welcome">
+      <h2>Welcome to Caffequino</h2>
+
+      <!-- Live Order & Prep Status Ticker -->
+      <div class="status-ticker" role="status">
+        <div class="ticker-item">
+          <span class="ticker-dot" aria-hidden="true"></span>
+          <span><strong>Live Kitchen:</strong> Open &amp; Brewing Today (Avg. pickup prep: 8–12 mins)</span>
+        </div>
+        <div class="ticker-item" style="color: #7A5C48;">
+          <span>☕ Order ahead online or walk-in anytime</span>
+        </div>
+      </div>
+
+      <div class="intro-card">
+        <div class="intro-text">
+          <p>
+            Step into a warm, cozy space where the rich aroma of freshly roasted beans greets you the moment you walk through our doors. Since 2015, Caffequino has been dedicated to the art of handcrafted coffee, serving everything from bold, intense espressos to our signature silky caramel lattes.
+          </p>
+          <p>
+            We carefully source our beans from sustainable local and international farms, roasting them in small batches to preserve their unique origin notes and deliver an impeccably balanced, aromatic cup every single time.
+          </p>
+          <p>
+            Whether you're here to jumpstart your morning, catch up with an old friend, or simply find a quiet corner to enjoy a peaceful moment, there is always a perfect cup and a comfortable seat waiting for you. Come make a memory with us.
+          </p>
+          <div class="intro-links">
+            <a href="about.html">Learn about us</a>
+            <a href="menu.html">See the menu</a>
+            <a href="visit.html">Find us</a>
+          </div>
+        </div>
+
+        <div class="welcome-video">
+          <video autoplay muted loop playsinline poster="pictures/drinks/latte.png">
+            <source src="Videos/Coffe.mp4" type="video/mp4">
+          </video>
+          <button type="button" class="video-mute" aria-label="Unmute video">🔇</button>
+        </div>
+      </div>
+    </section>
+
+    <section id="signature-pours">
+      <h2>Signature Pours</h2>
+      <div class="menu-grid">
+        <a href="menu.html" class="menu-item">
+          <img src="pictures/drinks/latte.png" alt="Caffè Latte" loading="lazy">
+          <div class="menu-content">
+            <div class="menu-row">
+              <span class="menu-name">Caffè Latte</span>
+              <span class="menu-base-price">PHP 75</span>
+            </div>
+            <p class="menu-note">Smooth espresso bathed in silky steamed milk</p>
+          </div>
+        </a>
+
+        <a href="menu.html" class="menu-item">
+          <img src="pictures/drinks/icedmacchiato.png" alt="Iced Caramel Macchiato" loading="lazy">
+          <div class="menu-content">
+            <div class="menu-row">
+              <span class="menu-name">Iced Caramel Macchiato</span>
+              <span class="menu-base-price">PHP 114</span>
+            </div>
+            <p class="menu-note">Vanilla-spiked espresso layered over milk</p>
+          </div>
+        </a>
+
+        <a href="menu.html" class="menu-item">
+          <img src="pictures/drinks/coldbrew.png" alt="Cold Brew" loading="lazy">
+          <div class="menu-content">
+            <div class="menu-row">
+              <span class="menu-name">Cold Brew</span>
+              <span class="menu-base-price">PHP 59</span>
+            </div>
+            <p class="menu-note">Smooth, naturally sweet, never bitter</p>
+          </div>
+        </a>
+      </div>
+      <p class="section-cta"><a href="menu.html">View Full Menu &amp; Order →</a></p>
+    </section>
+
+    <section id="craft" class="feature-hero-section">
+      <div class="feature-hero-header">
+        <h2>Our Craft & Philosophy</h2>
+        <p class="feature-hero-sub">Discover what makes every cup at Caffequino an exceptional experience.</p>
+      </div>
+      <div class="feature-card-grid">
+        <div class="feature-card">
+          <div class="feature-icon">🌱</div>
+          <h3>Sustainable Sourcing</h3>
+          <p>Ethically harvested beans from partner farms committed to environmental stewardship and fair grower wages.</p>
+        </div>
+        <div class="feature-card feature-card-highlight">
+          <div class="feature-badge">Master Roasters</div>
+          <div class="feature-icon">🔥</div>
+          <h3>Small-Batch Roasting</h3>
+          <p>Roasted in calibrated batches to unlock distinct flavor profiles, vibrant acidity, and chocolatey finishes.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">☕</div>
+          <h3>Expert Barista Pours</h3>
+          <p>Precision extraction and silky microfoam texture tailored to perfection in every single cup.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">🏡</div>
+          <h3>Cozy Ambiance</h3>
+          <p>A warm neighborhood sanctuary designed for relaxed conversations, focused work, and peaceful moments.</p>
+        </div>
+        <div class="feature-card" style="grid-column: span 2;">
+          <div class="feature-icon">⚡</div>
+          <h3>Live Order Tracking</h3>
+          <p>Seamless pickup and delivery ordering with real-time kitchen status updates right from your device.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="reviews">
+      <h2>Leave a Review</h2>
+      <div class="review-form-card">
+        <p style="margin-bottom: 20px; color: #5C4033; font-size: 0.95em;">Have you visited Caffequino or enjoyed our coffee? We would love to hear your thoughts!</p>
+        <form id="review-submission-form">
+          <div class="field" style="margin-bottom: 16px;">
+            <label for="review-name">Your Name</label>
+            <input type="text" id="review-name" name="name" placeholder="e.g., Juan Dela Cruz" required autocomplete="name">
+          </div>
+          <div class="field" style="margin-bottom: 16px;">
+            <label for="review-rating">Rating</label>
+            <select id="review-rating" name="rating" required style="width: 100%; padding: 12px; border: 1px solid #E6DDD0; border-radius: 8px; background: #FAF6F0; color: #2C1A12; font-family: inherit;">
+              <option value="5">★★★★★ (5/5) — Outstanding</option>
+              <option value="4">★★★★☆ (4/5) — Great</option>
+              <option value="3">★★★☆☆ (3/5) — Good</option>
+            </select>
+          </div>
+          <div class="field" style="margin-bottom: 20px;">
+            <label for="review-comment">Your Review</label>
+            <textarea id="review-comment" name="comment" rows="3" placeholder="Tell us about your favorite drink, roast notes, or café experience..." required></textarea>
+          </div>
+          <button type="submit" class="submit-btn">Submit Review</button>
+        </form>
+        <p id="review-success-msg" role="status" hidden style="margin-top: 16px; text-align: center; color: #2E7D32; font-weight: 600;">Thank you for sharing your feedback with Caffequino!</p>
+      </div>
+    </section>
+
+    <section id="visit-hours">
+      <div class="hours-strip">
+        <div class="hours-info">
+          <p><strong class="micro-label">Opening Hours</strong><br>Monday – Sunday, 8:00 AM – 10:00 PM</p>
+          <p><strong class="micro-label">Location</strong><br>Cebu City, Philippines</p>
+        </div>
+        <a href="visit.html" class="hours-btn">Plan Your Visit</a>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <p>© 2026 Caffequino. · <a href="admin.html" style="opacity: 0.7; font-size: 0.85em;">Staff Portal</a></p>
+    <p><a href="#">Back to top</a></p>
+  </footer>
+
+  <script src="theme.js" defer></script>
+  <script src="tracker.js" defer></script>
+  <script>
+    (function () {
+      const btn = document.querySelector('.welcome-video .video-mute');
+      const vid = document.querySelector('.welcome-video video');
+      if (!btn || !vid) return;
+      btn.addEventListener('click', () => {
+        vid.muted = !vid.muted;
+        btn.textContent = vid.muted ? '🔇' : '🔊';
+        btn.setAttribute('aria-label', vid.muted ? 'Unmute video' : 'Mute video');
+      });
+    })();
+
+    const reviewForm = document.getElementById('review-submission-form');
+    if (reviewForm) {
+      reviewForm.addEventListener('submit', function (e) {
+        e.preventDefault();
+        reviewForm.hidden = true;
+        const msg = document.getElementById('review-success-msg');
+        if (msg) msg.hidden = false;
+      });
+    }
+  </script>
+</body>
+</html>
