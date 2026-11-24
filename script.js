@@ -30,7 +30,6 @@
   const orderElements = {
     total: getEl('order-total'),
     buttonTotal: getEl('button-total'),
-    stickyTotal: getEl('sticky-total'),
     breakdown: getEl('breakdown'),
     bannerName: getEl('drink-banner-name'),
     bannerPrice: getEl('drink-banner-price'),
@@ -45,7 +44,6 @@
     receiptBody: getEl('receipt-body'),
     receiptTotal: getEl('receipt-total'),
     trackLiveBtn: getEl('track-live-btn'),
-    stickyOrderBtn: getEl('sticky-order-btn'),
     addressField: getEl('address-field'),
     phone: getEl('phone'),
     instructions: getEl('instructions'),
@@ -61,21 +59,38 @@
   };
 
   // --- Theme Logic ---
+  const SUN_SVG = `<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>`;
+
+  const MOON_SVG = `<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>`;
+
+  function renderThemeBtnContent(btn, isDark) {
+    btn.setAttribute('aria-label', isDark ? 'Switch to light mode' : 'Switch to dark mode');
+    btn.setAttribute('title', isDark ? 'Switch to light mode' : 'Switch to dark mode');
+    btn.innerHTML = `
+      <span class="theme-toggle-icon">${isDark ? SUN_SVG : MOON_SVG}</span>
+      <span class="theme-toggle-label">${isDark ? 'Light' : 'Dark'}</span>
+    `;
+  }
+
   function initTheme() {
     const savedTheme = localStorage.getItem('caffequino_theme');
     if (savedTheme === 'dark') {
       document.body.classList.add('dark-mode');
     }
 
+    const isStaffPortal = document.getElementById('login-view') || document.getElementById('dashboard-view');
+
     document.querySelectorAll('nav').forEach(nav => {
-      // Add "My Orders" link
-      if (!nav.querySelector('a[href*="menu.html"] ~ a') && !nav.querySelector('a[onclick*="open-tracker-link"]')) {
+      // Add "My Orders" link on customer pages
+      if (!isStaffPortal && !nav.querySelector('a[href*="menu.html"] ~ a') && !nav.querySelector('.nav-orders-link')) {
         const myOrdersLink = document.createElement('a');
         myOrdersLink.href = '#';
+        myOrdersLink.className = 'nav-orders-link';
         myOrdersLink.textContent = 'My Orders';
         myOrdersLink.onclick = (e) => {
           e.preventDefault();
-          if (trackerElements.openBtn) trackerElements.openBtn.click();
+          const trackerBtn = getEl('open-tracker-link');
+          if (trackerBtn) trackerBtn.click();
         };
         nav.appendChild(myOrdersLink);
       }
@@ -85,15 +100,14 @@
         const btn = document.createElement('button');
         btn.type = 'button';
         btn.className = 'theme-toggle-btn';
-        btn.setAttribute('aria-label', 'Toggle dark/light mode');
         const isDark = document.body.classList.contains('dark-mode');
-        btn.innerHTML = isDark ? '☀️ Light' : '🌙 Dark';
+        renderThemeBtnContent(btn, isDark);
 
         btn.addEventListener('click', () => {
           document.body.classList.toggle('dark-mode');
           const darkActive = document.body.classList.contains('dark-mode');
-          btn.innerHTML = darkActive ? '☀️ Light' : '🌙 Dark';
           localStorage.setItem('caffequino_theme', darkActive ? 'dark' : 'light');
+          document.querySelectorAll('.theme-toggle-btn').forEach(b => renderThemeBtnContent(b, darkActive));
         });
         nav.appendChild(btn);
       }
@@ -223,7 +237,6 @@
     if (orderElements.qtyValue) orderElements.qtyValue.textContent = state.quantity;
     if (orderElements.total) orderElements.total.textContent = total;
     if (orderElements.buttonTotal) orderElements.buttonTotal.textContent = total;
-    if (orderElements.stickyTotal) orderElements.stickyTotal.textContent = total;
     if (orderElements.cashlessAmount) orderElements.cashlessAmount.textContent = total;
     if (orderElements.bannerName) orderElements.bannerName.textContent = state.drink || '—';
     if (orderElements.bannerPrice) orderElements.bannerPrice.textContent = `PHP ${base}`;
@@ -339,7 +352,9 @@
   }
 
   function updateMilkGroup() {
-    const milkGroup = document.querySelector('.milk-grid').closest('.pill-group');
+    const milkGrid = document.querySelector('.milk-grid');
+    if (!milkGrid) return;
+    const milkGroup = milkGrid.closest('.pill-group');
     const hide = ['Espresso', 'Iced Americano', 'Cold Brew'].includes(state.drink);
     if (milkGroup) milkGroup.hidden = hide;
     if (hide && (state.milk !== 'Whole' || state.milkUp !== 0)) {
@@ -473,63 +488,74 @@
   document.addEventListener('DOMContentLoaded', () => {
     initTheme();
 
-    // Initialize Tracker (Floating Button & Modal)
-    if (!getEl('open-tracker-link')) {
-      const trackerBtn = document.createElement('button');
-      trackerBtn.type = 'button';
-      trackerBtn.id = 'open-tracker-link';
-      trackerBtn.className = 'floating-tracker-btn';
-      trackerBtn.setAttribute('aria-label', 'Track My Order');
-      trackerBtn.innerHTML = `
-        <span>📦 Track My Order</span>
-        <span id="tracker-count" class="tracker-badge" hidden>0</span>
-      `;
-      document.body.appendChild(trackerBtn);
-    }
+    const isStaffPortal = document.getElementById('login-view') || document.getElementById('dashboard-view');
 
-    if (!getEl('tracker-modal')) {
-      const trackerModalDiv = document.createElement('div');
-      trackerModalDiv.className = 'modal-overlay';
-      trackerModalDiv.id = 'tracker-modal';
-      trackerModalDiv.hidden = true;
-      trackerModalDiv.innerHTML = `
-        <div class="modal" role="dialog" aria-modal="true" aria-labelledby="tracker-title" style="max-width: 560px;">
-          <button type="button" class="modal-close" id="tracker-close" aria-label="Close tracker">×</button>
-          <h3 id="tracker-title">Live Order Tracking Queue</h3>
-          <p class="modal-sub">Real-time status, queue position, and estimated wait times for your coffee.</p>
-          <div id="tracker-orders-list"></div>
+    // Initialize Tracker for customer pages (Floating Button & Modal)
+    if (!isStaffPortal) {
+      if (!getEl('open-tracker-link')) {
+        const trackerBtn = document.createElement('button');
+        trackerBtn.type = 'button';
+        trackerBtn.id = 'open-tracker-link';
+        trackerBtn.className = 'floating-tracker-btn';
+        trackerBtn.setAttribute('aria-label', 'Track My Order');
+        trackerBtn.innerHTML = `
+          <span>📦 Track My Order</span>
+          <span id="tracker-count" class="tracker-badge" hidden>0</span>
+        `;
+        document.body.appendChild(trackerBtn);
+      }
 
-          <div class="lookup-section" style="margin-top: 16px; border-top: 1px dashed #E6DDD0; padding-top: 16px;">
-            <h4 class="lookup-title">Lost your order view? Look it up:</h4>
-            <form id="lookup-form" class="lookup-form">
-              <input type="number" id="lookup-orderno" placeholder="Order # (e.g. 101)" required>
-              <input type="text" id="lookup-name" placeholder="Your Name" required>
-              <button type="submit" class="lookup-submit-btn">Track</button>
-            </form>
-            <div id="lookup-error" class="lookup-error" hidden>Order not found. Check your order number and name.</div>
+      if (!getEl('tracker-modal')) {
+        const trackerModalDiv = document.createElement('div');
+        trackerModalDiv.className = 'modal-overlay';
+        trackerModalDiv.id = 'tracker-modal';
+        trackerModalDiv.hidden = true;
+        trackerModalDiv.innerHTML = `
+          <div class="modal" role="dialog" aria-modal="true" aria-labelledby="tracker-title" style="max-width: 560px;">
+            <button type="button" class="modal-close" id="tracker-close" aria-label="Close tracker">×</button>
+            <h3 id="tracker-title">Live Order Tracking Queue</h3>
+            <p class="modal-sub">Real-time status, queue position, and estimated wait times for your coffee.</p>
+            <div id="tracker-orders-list"></div>
+
+            <div class="lookup-section" style="margin-top: 16px; border-top: 1px dashed #E6DDD0; padding-top: 16px;">
+              <h4 class="lookup-title">Lost your order view? Look it up:</h4>
+              <form id="lookup-form" class="lookup-form">
+                <input type="number" id="lookup-orderno" placeholder="Order # (e.g. 101)" required>
+                <input type="text" id="lookup-name" placeholder="Your Name" required>
+                <button type="submit" class="lookup-submit-btn">Track</button>
+              </form>
+              <div id="lookup-error" class="lookup-error" hidden>Order not found. Check your order number and name.</div>
+            </div>
           </div>
-        </div>
-      `;
-      document.body.appendChild(trackerModalDiv);
+        `;
+        document.body.appendChild(trackerModalDiv);
+      }
+
+      // Bind Tracker UI
+      const openBtn = getEl('open-tracker-link');
+      const modal = getEl('tracker-modal');
+      const close = getEl('tracker-close');
+      if (openBtn && modal) {
+        openBtn.addEventListener('click', (e) => {
+          e.preventDefault();
+          renderTrackerOrders();
+          modal.hidden = false;
+        });
+        if (close) close.addEventListener('click', () => { modal.hidden = true; });
+        modal.addEventListener('click', (e) => { if (e.target === modal) modal.hidden = true; });
+      }
+
+      updateTrackerBadge();
     }
 
-    // Bind Tracker UI
-    if (trackerElements.openBtn && trackerElements.modal) {
-      trackerElements.openBtn.addEventListener('click', (e) => {
-        e.preventDefault();
-        renderTrackerOrders();
-        trackerElements.modal.hidden = false;
-      });
-      if (trackerElements.close) trackerElements.close.addEventListener('click', () => { trackerElements.modal.hidden = true; });
-      trackerElements.modal.addEventListener('click', (e) => { if (e.target === trackerElements.modal) trackerElements.modal.hidden = true; });
+    // Bind Order UI (only on menu page with order form)
+    if (orderElements.orderForm) {
+      setStep(1);
+      setOrderType('Pickup');
+      setPaymentMethod('Cash');
+      applySoldOutDrinks();
+      recalc();
     }
-
-    // Bind Order UI
-    setStep(1);
-    setOrderType('Pickup');
-    setPaymentMethod('Cash');
-    applySoldOutDrinks();
-    recalc();
 
     // Menu Item Clicks
     document.querySelectorAll('.menu-item').forEach(item => {
@@ -795,12 +821,6 @@
       resetCustomerFields();
     });
 
-    // Sticky order button
-    orderElements.stickyOrderBtn?.addEventListener('click', () => {
-      orderElements.orderForm?.scrollIntoView({ behavior: 'smooth' });
-      orderElements.orderForm?.querySelector('input')?.focus();
-    });
-
     // Lookup in Tracker
     const lookupForm = getEl('lookup-form');
     const lookupError = getEl('lookup-error');
@@ -874,7 +894,9 @@
     }
 
     // Init
-    applySoldOutDrinks();
+    if (orderElements.orderForm) {
+      applySoldOutDrinks();
+    }
   });
 
   // --- Helper Functions (outside DOMContentLoaded for availability) ---

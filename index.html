@@ -68,11 +68,25 @@
           </div>
         </div>
 
-        <div class="welcome-video">
-          <video autoplay muted loop playsinline poster="pictures/drinks/latte.png">
-            <source src="Videos/Coffe.mp4" type="video/mp4">
-          </video>
-          <button type="button" class="video-mute" aria-label="Unmute video">🔇</button>
+        <div class="welcome-video-container">
+          <div class="welcome-video">
+            <video autoplay muted loop playsinline poster="pictures/drinks/latte.png">
+              <source src="Videos/Coffe.mp4" type="video/mp4">
+            </video>
+            <button type="button" class="video-mute" aria-label="Unmute video">🔇</button>
+          </div>
+          <div class="welcome-video">
+            <video autoplay muted loop playsinline poster="pictures/drinks/latte.png">
+              <source src="Videos/coffe1.mp4" type="video/mp4">
+            </video>
+            <button type="button" class="video-mute" aria-label="Unmute video">🔇</button>
+          </div>
+          <div class="welcome-video">
+            <video autoplay muted loop playsinline poster="pictures/drinks/latte.png">
+              <source src="Videos/coffe2.mp4" type="video/mp4">
+            </video>
+            <button type="button" class="video-mute" aria-label="Unmute video">🔇</button>
+          </div>
         </div>
       </div>
     </section>
@@ -166,6 +180,8 @@
               <option value="5">★★★★★ (5/5) — Outstanding</option>
               <option value="4">★★★★☆ (4/5) — Great</option>
               <option value="3">★★★☆☆ (3/5) — Good</option>
+              <option value="2">★★☆☆☆ (2/5) — Bad</option>
+              <option value="1">★☆☆☆☆ (1/5) — Terrible</option>
             </select>
           </div>
           <div class="field" style="margin-bottom: 20px;">
@@ -195,8 +211,7 @@
     <p><a href="#">Back to top</a></p>
   </footer>
 
-  <script src="theme.js" defer></script>
-  <script src="tracker.js" defer></script>
+  <script src="script.js" defer></script>
   <script>
     (function () {
       const btn = document.querySelector('.welcome-video .video-mute');
