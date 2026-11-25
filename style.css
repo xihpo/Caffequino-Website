@@ -1449,16 +1449,55 @@ legend.micro-label {
   text-decoration: underline;
 }
 
-/* Welcome section two-column layout */
-.intro-card {
-  display: flex;
-  gap: 40px;
-  align-items: center;
+/* Welcome section centered editorial banner */
+.welcome-hero-banner {
+  text-align: center;
+  max-width: 720px;
+  margin: 0 auto 36px auto;
+  padding: 0 20px;
 }
 
-.intro-text {
-  flex: 1;
-  max-width: 64ch;
+.welcome-hero-banner h2 {
+  font-family: 'Fraunces', serif;
+  font-weight: 600;
+  font-size: 2.2em;
+  margin: 12px 0 14px 0;
+  color: #2C1A12;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+}
+
+.welcome-hero-banner p {
+  color: #5C3A22;
+  font-size: 1.1em;
+  line-height: 1.6;
+  margin: 0 auto 24px auto;
+  max-width: 58ch;
+}
+
+.welcome-hero-banner .intro-links {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.welcome-hero-banner .intro-links a {
+  display: inline-block;
+  margin: 0;
+  padding: 10px 24px;
+  background: #2C1A12;
+  color: #FAF6F0;
+  text-decoration: none;
+  border-radius: 999px;
+  font-weight: 600;
+  box-shadow: 0 4px 14px rgba(44, 26, 18, 0.15);
+  transition: transform 0.2s ease, background 0.2s ease;
+}
+
+.welcome-hero-banner .intro-links a:hover {
+  transform: translateY(-2px);
+  background: #3D2516;
 }
 
 .welcome-video-container {
@@ -1466,6 +1505,7 @@ legend.micro-label {
   grid-template-columns: repeat(3, 1fr);
   gap: 20px;
   width: 100%;
+  margin-top: 20px;
 }
 
 .welcome-video {
@@ -1483,37 +1523,6 @@ legend.micro-label {
   width: 100%;
   height: 100%;
   object-fit: cover;
-}
-
-.welcome-video video {
-  display: block;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.welcome-video .video-mute {
-  position: absolute;
-  bottom: 8px;
-  right: 8px;
-  width: 32px;
-  height: 32px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0;
-  border-radius: 50%;
-  background: rgba(255, 253, 249, 0.9);
-  border: 1px solid #E6DDD0;
-  color: #2C1A12;
-  font-size: 0.9em;
-  cursor: pointer;
-  transition: transform 150ms ease, background 150ms ease;
-}
-
-.welcome-video .video-mute:hover {
-  background: #FFFDF9;
-  transform: scale(1.08);
 }
 
 footer {
@@ -2172,7 +2181,9 @@ body.dark-mode .qty-btn:focus-visible {
 
 @media (max-width: 768px) {
   .intro-card { flex-direction: column; }
-  .welcome-video { width: min(240px, 80vw); align-self: center; }
+  .welcome-hero-banner h2 { font-size: 1.6em; }
+  .welcome-video-container { grid-template-columns: 1fr; gap: 14px; }
+  .welcome-video { width: min(300px, 80vw); margin: 0 auto; }
   h1 { font-size: 2.5em; }
   h2 { font-size: 2em; }
   section { margin-bottom: 35px; }
@@ -2224,8 +2235,7 @@ body.dark-mode .qty-btn:focus-visible {
   .selected-badge,
   .section-cta a,
   .craft-card,
-  .hours-btn,
-  .welcome-video .video-mute {
+  .hours-btn {
     transition: none !important;
     transform: none !important;
   }

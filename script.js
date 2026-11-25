@@ -185,24 +185,24 @@
 
           <div style="display: flex; align-items: center; justify-content: space-between; background: #FFF; border: 1px solid #E6DDD0; border-radius: 10px; padding: 10px 14px; margin-top: 4px;">
             <div style="text-align: center; flex: 1; opacity: ${stage1Active ? '1' : '0.4'};">
-              <div style="font-size: 1.2em;">📋</div>
+              <div style="font-size: 1.2em;">\u{1F4CB}</div>
               <div style="font-size: 0.75em; font-weight: 700; color: #3D2516; margin-top: 2px;">Pending Queue</div>
             </div>
             <div style="flex: 0 0 24px; text-align: center; color: #B86B35; font-weight: bold;">➔</div>
             <div style="text-align: center; flex: 1; opacity: ${stage2Active ? '1' : '0.4'};">
-              <div style="font-size: 1.2em;">☕</div>
+              <div style="font-size: 1.2em;">\u{2615}</div>
               <div style="font-size: 0.75em; font-weight: 700; color: #3D2516; margin-top: 2px;">Brewing Now</div>
             </div>
             <div style="flex: 0 0 24px; text-align: center; color: #B86B35; font-weight: bold;">➔</div>
             <div style="text-align: center; flex: 1; opacity: ${stage3Active ? '1' : '0.4'};">
-              <div style="font-size: 1.2em;">✨</div>
+              <div style="font-size: 1.2em;">\u{2728}</div>
               <div style="font-size: 0.75em; font-weight: 700; color: #3D2516; margin-top: 2px;">Ready for Pickup</div>
             </div>
           </div>
 
           <div style="display: flex; justify-content: space-between; align-items: center; background: #F5EFE6; padding: 8px 12px; border-radius: 8px; font-size: 0.85em;">
-            <span style="color: #5C3A22; font-weight: 600;">📊 ${queueText}</span>
-            <span style="color: #B86B35; font-weight: 700;">⏱️ Est. Wait: ~${ewtMinutes} min</span>
+            <span style="color: #5C3A22; font-weight: 600;">\u{1F4CA} ${queueText}</span>
+            <span style="color: #B86B35; font-weight: 700;">\u{23F1}\u{FE0F} Est. Wait: ~${ewtMinutes} min</span>
           </div>
 
           ${canCancel ? `<div style="display: flex; justify-content: flex-end; margin-top: 4px;"><button type="button" onclick="cancelCustomerOrder(${order.id})" style="background: #FFF1F0; color: #A94442; border: 1px solid #EBCCD1; border-radius: 6px; padding: 4px 10px; font-size: 0.75em; font-weight: 600; cursor: pointer;">Cancel Order</button></div>` : ''}
@@ -499,7 +499,7 @@
         trackerBtn.className = 'floating-tracker-btn';
         trackerBtn.setAttribute('aria-label', 'Track My Order');
         trackerBtn.innerHTML = `
-          <span>📦 Track My Order</span>
+          <span>\u{1F4E6} Track My Order</span>
           <span id="tracker-count" class="tracker-badge" hidden>0</span>
         `;
         document.body.appendChild(trackerBtn);
@@ -1125,7 +1125,7 @@ function checkNewOrders(orders) {
   if (lastOrderCount > 0 && orders.length > lastOrderCount) {
     playBeep();
     const latest = orders[orders.length - 1];
-    showToast(`🔔 New order #${latest.orderNo || 101} from ${latest.name || 'Customer'}!`);
+    showToast(`\u{1F514} New order #${latest.orderNo || 101} from ${latest.name || 'Customer'}!`);
   }
   lastOrderCount = orders.length;
 }
@@ -1217,7 +1217,7 @@ function renderLiveOrders() {
         <div style="flex: 1; min-width: 0;">
           <div class="order-card-header">
             <div>
-              <span class="micro-label">Order #${ordNum} • PHP ${order.total} ${order.createdAt ? '• ' + formatAge(order.createdAt) : ''} ${isAging ? '⚠️' : ''}</span>
+              <span class="micro-label">Order #${ordNum} • PHP ${order.total} ${order.createdAt ? '• ' + formatAge(order.createdAt) : ''} ${isAging ? '\u{26A0}\u{FE0F}' : ''}</span>
               <h4 class="order-customer">${order.name} (${order.orderType})</h4>
             </div>
             <span class="status-badge">${status}</span>

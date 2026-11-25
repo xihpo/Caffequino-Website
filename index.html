@@ -37,7 +37,16 @@
   <main>
 
     <section id="welcome">
-      <h2>Welcome to Caffequino</h2>
+      <div class="welcome-hero-banner">
+        <span class="micro-label">Caffequino Craft Coffee</span>
+        <h2>Handcrafted coffee, roasted weekly in Cebu since 2015.</h2>
+        <p>Step into a warm space where every cup tells a story. Order ahead for quick pickup or stay a while.</p>
+        <div class="intro-links">
+          <a href="about.html">Learn about us</a>
+          <a href="menu.html">See the menu</a>
+          <a href="visit.html">Find us</a>
+        </div>
+      </div>
 
       <!-- Live Order & Prep Status Ticker -->
       <div class="status-ticker" role="status">
@@ -46,47 +55,25 @@
           <span><strong>Live Kitchen:</strong> Open &amp; Brewing Today (Avg. pickup prep: 8–12 mins)</span>
         </div>
         <div class="ticker-item" style="color: #7A5C48;">
-          <span>☕ Order ahead online or walk-in anytime</span>
+          <span>&#x2615; Order ahead online or walk-in anytime</span>
         </div>
       </div>
 
-      <div class="intro-card">
-        <div class="intro-text">
-          <p>
-            Step into a warm, cozy space where the rich aroma of freshly roasted beans greets you the moment you walk through our doors. Since 2015, Caffequino has been dedicated to the art of handcrafted coffee, serving everything from bold, intense espressos to our signature silky caramel lattes.
-          </p>
-          <p>
-            We carefully source our beans from sustainable local and international farms, roasting them in small batches to preserve their unique origin notes and deliver an impeccably balanced, aromatic cup every single time.
-          </p>
-          <p>
-            Whether you're here to jumpstart your morning, catch up with an old friend, or simply find a quiet corner to enjoy a peaceful moment, there is always a perfect cup and a comfortable seat waiting for you. Come make a memory with us.
-          </p>
-          <div class="intro-links">
-            <a href="about.html">Learn about us</a>
-            <a href="menu.html">See the menu</a>
-            <a href="visit.html">Find us</a>
-          </div>
+      <div class="welcome-video-container">
+        <div class="welcome-video">
+          <video autoplay muted loop playsinline poster="pictures/drinks/latte.png">
+            <source src="Videos/Coffe.mp4" type="video/mp4">
+          </video>
         </div>
-
-        <div class="welcome-video-container">
-          <div class="welcome-video">
-            <video autoplay muted loop playsinline poster="pictures/drinks/latte.png">
-              <source src="Videos/Coffe.mp4" type="video/mp4">
-            </video>
-            <button type="button" class="video-mute" aria-label="Unmute video">🔇</button>
-          </div>
-          <div class="welcome-video">
-            <video autoplay muted loop playsinline poster="pictures/drinks/latte.png">
-              <source src="Videos/coffe1.mp4" type="video/mp4">
-            </video>
-            <button type="button" class="video-mute" aria-label="Unmute video">🔇</button>
-          </div>
-          <div class="welcome-video">
-            <video autoplay muted loop playsinline poster="pictures/drinks/latte.png">
-              <source src="Videos/coffe2.mp4" type="video/mp4">
-            </video>
-            <button type="button" class="video-mute" aria-label="Unmute video">🔇</button>
-          </div>
+        <div class="welcome-video">
+          <video autoplay muted loop playsinline poster="pictures/drinks/latte.png">
+            <source src="Videos/coffe1.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div class="welcome-video">
+          <video autoplay muted loop playsinline poster="pictures/drinks/latte.png">
+            <source src="Videos/coffe2.mp4" type="video/mp4">
+          </video>
         </div>
       </div>
     </section>
@@ -137,28 +124,28 @@
       </div>
       <div class="feature-card-grid">
         <div class="feature-card">
-          <div class="feature-icon">🌱</div>
+          <div class="feature-icon">&#x1F331;</div>
           <h3>Sustainable Sourcing</h3>
           <p>Ethically harvested beans from partner farms committed to environmental stewardship and fair grower wages.</p>
         </div>
         <div class="feature-card feature-card-highlight">
           <div class="feature-badge">Master Roasters</div>
-          <div class="feature-icon">🔥</div>
+          <div class="feature-icon">&#x1F525;</div>
           <h3>Small-Batch Roasting</h3>
           <p>Roasted in calibrated batches to unlock distinct flavor profiles, vibrant acidity, and chocolatey finishes.</p>
         </div>
         <div class="feature-card">
-          <div class="feature-icon">☕</div>
+          <div class="feature-icon">&#x2615;</div>
           <h3>Expert Barista Pours</h3>
           <p>Precision extraction and silky microfoam texture tailored to perfection in every single cup.</p>
         </div>
         <div class="feature-card">
-          <div class="feature-icon">🏡</div>
+          <div class="feature-icon">&#x1F3E1;</div>
           <h3>Cozy Ambiance</h3>
           <p>A warm neighborhood sanctuary designed for relaxed conversations, focused work, and peaceful moments.</p>
         </div>
         <div class="feature-card" style="grid-column: span 2;">
-          <div class="feature-icon">⚡</div>
+          <div class="feature-icon">&#x26A1;</div>
           <h3>Live Order Tracking</h3>
           <p>Seamless pickup and delivery ordering with real-time kitchen status updates right from your device.</p>
         </div>
@@ -213,17 +200,6 @@
 
   <script src="script.js" defer></script>
   <script>
-    (function () {
-      const btn = document.querySelector('.welcome-video .video-mute');
-      const vid = document.querySelector('.welcome-video video');
-      if (!btn || !vid) return;
-      btn.addEventListener('click', () => {
-        vid.muted = !vid.muted;
-        btn.textContent = vid.muted ? '🔇' : '🔊';
-        btn.setAttribute('aria-label', vid.muted ? 'Unmute video' : 'Mute video');
-      });
-    })();
-
     const reviewForm = document.getElementById('review-submission-form');
     if (reviewForm) {
       reviewForm.addEventListener('submit', function (e) {
